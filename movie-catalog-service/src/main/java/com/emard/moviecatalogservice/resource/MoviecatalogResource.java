@@ -10,6 +10,7 @@ import com.emard.moviecatalogservice.models.CatalogItem;
 import com.emard.moviecatalogservice.models.Movie;
 import com.emard.moviecatalogservice.models.Rating;
 import com.emard.moviecatalogservice.models.UserRating;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -44,6 +45,7 @@ public class MoviecatalogResource {
     }*/
     
     @GetMapping("/{userId}")
+    @HystrixCommand(fallbackMethod = "getFallBackCatalog"  )
     public List<CatalogItem> getCatalogs(@PathVariable("userId") String userId){
         //List<ServiceInstance> instances = discoveryClient.getInstances("serviceId");
         List<CatalogItem> catalogItems =  new ArrayList<>();
@@ -72,5 +74,9 @@ public class MoviecatalogResource {
         /*return Collections.singletonList(
             new CatalogItem("Transformers", "Test", 4)
             );*/
+    }
+
+    public List<CatalogItem> getFallBackCatalog(@PathVariable("userId") String userId){
+        return Arrays.asList(new CatalogItem("No movie", "", 0));
     }
 }
