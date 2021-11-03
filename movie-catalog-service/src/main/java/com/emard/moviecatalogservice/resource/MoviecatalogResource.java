@@ -57,7 +57,7 @@ public class MoviecatalogResource {
         for (Rating rating : ratings) {
             Movie movie =  restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
             //Movie movie =  getWebClient("http://localhost:8081/movies/", rating.getMovieId());
-            catalogItems.add(new CatalogItem(movie.getName(), "Desc", rating.getRating()));
+            catalogItems.add(new CatalogItem(movie.getName(), movie.getDescription(), rating.getRating()));
         }
         return catalogItems;
         /*return ratings.stream().map(rating -> {

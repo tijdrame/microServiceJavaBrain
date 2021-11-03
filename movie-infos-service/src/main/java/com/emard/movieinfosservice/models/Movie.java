@@ -4,13 +4,15 @@ public class Movie {
     
     private String movieId;
     private String name;
+    private String description;
 
     public Movie() {
     }
 
-    public Movie(String movieId, String name) {
+    public Movie(String movieId, String name, String description) {
         this.movieId = movieId;
         this.name = name;
+        this.description = description;
     }
 
     public String getMovieId() {
@@ -29,6 +31,14 @@ public class Movie {
         this.name = name;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Movie movieId(String movieId) {
         setMovieId(movieId);
         return this;
@@ -39,12 +49,19 @@ public class Movie {
         return this;
     }
 
+    public Movie description(String description) {
+        setDescription(description);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "{" +
             " movieId='" + getMovieId() + "'" +
             ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 
+    
 }
