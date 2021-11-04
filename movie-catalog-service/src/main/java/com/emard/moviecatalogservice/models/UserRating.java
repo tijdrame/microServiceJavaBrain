@@ -3,13 +3,24 @@ package com.emard.moviecatalogservice.models;
 import java.util.List;
 
 public class UserRating {
+    private String userId;
     private List<Rating> ratings;
+
 
     public UserRating() {
     }
 
-    public UserRating(List<Rating> ratings) {
+    public UserRating(String userId, List<Rating> ratings) {
+        this.userId = userId;
         this.ratings = ratings;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public List<Rating> getRatings() {
@@ -20,6 +31,11 @@ public class UserRating {
         this.ratings = ratings;
     }
 
+    public UserRating userId(String userId) {
+        setUserId(userId);
+        return this;
+    }
+
     public UserRating ratings(List<Rating> ratings) {
         setRatings(ratings);
         return this;
@@ -28,8 +44,10 @@ public class UserRating {
     @Override
     public String toString() {
         return "{" +
-            " ratings='" + getRatings() + "'" +
+            " userId='" + getUserId() + "'" +
+            ", ratings='" + getRatings() + "'" +
             "}";
     }
+    
 
 }
