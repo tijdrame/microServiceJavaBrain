@@ -1,0 +1,26 @@
+app:
+  name: My app
+  description: Welcome to ${app.name}
+
+my:
+  greeting: Hello World
+  list:
+    values: One, Two, Three
+
+#db:
+#  connection: connection-string-local
+#  host: 127.10.0.40
+#  port: 1897
+
+management.endpoints.web.exposure.include: "*"
+spring.cloud.config: http://localhost:8888
+#spring.config.import: http://localhost:8888/application/default
+#spring.cloud.config.import-check.enabled: false
+#spring.cloud.bootstrap.enabled: true
+
+#spring:
+#  cloud:
+#    config:
+#      allowOverride: ~
+#      overrideNone: ~
+spring.application.name: spring-boot-config
